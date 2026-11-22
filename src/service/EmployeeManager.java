@@ -11,7 +11,7 @@ public class EmployeeManager {
     private ArrayList<Employee> employee = new ArrayList<>();
 
     public void addEmployee(Employee e){
-        if (!isIdUnique(e.id)){
+        if (!isIdUnique(e.getId())){
             return;
         }
         employee.add(e);
@@ -25,7 +25,7 @@ public class EmployeeManager {
         }
     }
 
-    
+
 
     public boolean isIdUnique(int id){
         for(Employee e : employee){

@@ -11,10 +11,10 @@ public class DepartmentManager {
     private ArrayList<Department> departments = new ArrayList<>();
 
     public void addDepartment(Department d){
-        if (!isIdUnique(d.id)){
+        if (!isIdUnique(d.getDepartmentId())){
             return;
         }
-        if (!isNameUnique(d.name)){
+        if (!isNameUnique(d.getDepartmentName())){
             return;
         }
         departments.add(d);
@@ -22,7 +22,7 @@ public class DepartmentManager {
 
     public void delDepartment(int id){
         for (Department d : departments){
-            if (d.getId() == id){
+            if (d.getDepartmentId() == id){
                 departments.remove(d);
             }
         }
@@ -30,7 +30,7 @@ public class DepartmentManager {
 
     public boolean isIdUnique(int id){
         for(Department d : departments){
-            if (d.getId() == id){
+            if (d.getDepartmentId() == id){
             return false;
             }
         }
@@ -39,7 +39,7 @@ public class DepartmentManager {
 
     public boolean isNameUnique(String name){
         for(Department d : departments){
-            if (d.getName() == name){
+            if (d.getDepartmentName() == name){
             return false;
             }
         }

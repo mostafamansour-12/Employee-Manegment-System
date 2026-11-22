@@ -1,23 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-/**
- *
- * @author Mostafa
- */
-public class Department{
-    public int id;
-    public String name;
+import java.io.Serializable;
 
-    public int getId() {
-        return id;
+public class Department implements Serializable {
+
+    private int departmentId;
+    private String departmentName;
+
+    public Department(int departmentId, String departmentName) {
+        setDepartmentId(departmentId);
+        setDepartmentName(departmentName);
     }
 
-    public String getName() {
-        return name;
+    public int getDepartmentId() {
+        return departmentId;
     }
-    
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        if (departmentId <= 0) {
+            throw new IllegalArgumentException("Department ID must be a positive number");
+        }
+        this.departmentId = departmentId;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        if (departmentName == null || departmentName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Department name cannot be empty");
+        }
+        this.departmentName = departmentName.trim();
+    }
+
+    @Override
+    public String toString() {
+        return departmentName;
+    }
 }

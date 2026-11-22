@@ -3,10 +3,6 @@ package service;
 import java.util.ArrayList;
 import model.Employee;
 
-/**
- *
- * @author Mostafa
- */
 public class EmployeeManager {
     private ArrayList<Employee> employee = new ArrayList<>();
 
@@ -17,7 +13,7 @@ public class EmployeeManager {
         employee.add(e);
     }
 
-    public void delEmployee(int id){
+    public void deleteEmployee(int id){
         for (Employee e : employee){
             if (e.getId() == id){
                 employee.remove(e);
@@ -25,7 +21,42 @@ public class EmployeeManager {
         }
     }
 
+    public void updateEmployee(int oldId, Employee e){
+        for (int i = 0; i < employee.size(); i++){
+            if (employee.get(i).getId() == oldId){
+                employee.set(i, e);
+            }
+        }
+    }
 
+    public Employee getEmployeeById(int id){
+        for (Employee e : employee){
+            if (e.getId() == id){
+                return e;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Employee> searchByName(String name){
+        ArrayList<Employee> filteredEmployees = new ArrayList<>();
+        for (Employee e : employee){
+            if (e.getName().toLowerCase().contains(name.toLowerCase())){
+                filteredEmployees.add(e);
+            }
+        }
+        return filteredEmployees;
+    } 
+
+    public ArrayList<Employee> filterByDepartment(String departmentName){
+        ArrayList<Employee> filteredEmployees = new ArrayList<>();
+        for (Employee e : employee){
+            if (e.getDepartment().getDepartmentName().equals(departmentName)){
+                filteredEmployees.add(e);
+            }
+        }
+        return filteredEmployees;
+    }
 
     public boolean isIdUnique(int id){
         for(Employee e : employee){

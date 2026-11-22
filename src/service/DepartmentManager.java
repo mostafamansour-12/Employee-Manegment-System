@@ -3,10 +3,6 @@ package service;
 import java.util.ArrayList;
 import model.Department;
 
-/**
- *
- * @author Mostafa
- */
 public class DepartmentManager {
     private ArrayList<Department> departments = new ArrayList<>();
 
@@ -20,7 +16,7 @@ public class DepartmentManager {
         departments.add(d);
     }
 
-    public void delDepartment(int id){
+    public void deleteDepartment(int id){
         for (Department d : departments){
             if (d.getDepartmentId() == id){
                 departments.remove(d);

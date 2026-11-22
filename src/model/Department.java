@@ -8,6 +8,16 @@ package model;
  *
  * @author Mostafa
  */
-public class Department {
+public class Department{
+    public int id;
+    public String name;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
     
 }

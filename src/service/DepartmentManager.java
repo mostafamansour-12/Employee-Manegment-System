@@ -2,9 +2,15 @@ package service;
 
 import java.util.ArrayList;
 import model.Department;
+import io.FileHandler;
 
 public class DepartmentManager {
     private ArrayList<Department> departments = new ArrayList<>();
+    private FileHandler fileHandler = new FileHandler();
+
+    public DepartmentManager() {
+        load();
+    }
 
     public void addDepartment(Department d){
         if (!isIdUnique(d.getDepartmentId())){
@@ -14,14 +20,17 @@ public class DepartmentManager {
             return;
         }
         departments.add(d);
+        save();
     }
 
     public void deleteDepartment(int id){
-        for (Department d : departments){
-            if (d.getDepartmentId() == id){
-                departments.remove(d);
+        for (int i = 0; i < departments.size(); i++){
+            if (departments.get(i).getDepartmentId() == id){
+                departments.remove(i);
+                break;
             }
         }
+        save();
     }
 
     public boolean isIdUnique(int id){
@@ -40,6 +49,14 @@ public class DepartmentManager {
             }
         }
         return true;
+    }
+
+    private void save(){
+        fileHandler.saveDepartments(departments);
+    }
+
+    private void load(){
+        departments = fileHandler.loadDepartments();
     }
 
     public ArrayList<Department> getDepartments() {
